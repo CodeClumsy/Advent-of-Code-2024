@@ -1,0 +1,80 @@
+# Ignore build outputs
+bin/
+obj/
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Auto-generated files
+*.generated.cs
+
+# Package directories (can be restored using NuGet)
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+# Visual Studio Code files
+.vscode/
+
+# Visual Studio working files
+.vs/
+*.suo
+*.user
+*.cache
+*.ilk
+*.pdb
+*.ipch
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.unsuccessfulbuild
+*.OpencoverCoverage
+
+# Rider files
+.idea/
+*.sln.iml
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+desktop.ini
+
+# Git-specific files
+*.orig
+*.lock
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Coverage results
+coverage/
+*.coverage
+*.coveragexml
+
+# Debug and release configuration files
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Release.json
+appsettings.Production.json
+
+# Publish output
+wwwroot/
+out/
+publish/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
