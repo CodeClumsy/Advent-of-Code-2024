@@ -8,7 +8,7 @@ namespace AOC_2024.Solutions
     {
         public string SolvePuzzleOne(Puzzle input)
         {
-            string memory = input.PuzzleOneInput.Replace("\n", "").Replace(" ", "").ToLoIr();
+            string memory = input.PuzzleOneInput.Replace("\n", "").Replace(" ", "").ToLower();
             var matches = Regex.Matches(memory, @"mul\((\d{1,3}),(\d{1,3})\)");
             int result = 0;
 
@@ -156,7 +156,7 @@ namespace AOC_2024.Solutions
 
         public string SolvePuzzleTwo(Puzzle input)
         {
-            string memory = input.PuzzleTwoInput.Replace("\n", "").Replace(" ", "").ToLoIr();
+            string memory = input.PuzzleTwoInput.Replace("\n", "").Replace(" ", "").ToLower();
 
             // Regex to find mul, do, or don't instructions
             var matches = Regex.Matches(memory, @"mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\)");
