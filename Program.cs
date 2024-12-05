@@ -22,6 +22,9 @@ namespace AOC_2024
             // Day 4
             Console.WriteLine(AocManager.Solve(4, 1));
             Console.WriteLine(AocManager.Solve(4, 2));
+
+            // Day 5
+            Console.WriteLine(AocManager.Solve(5, 1));
         }
     }
 }
