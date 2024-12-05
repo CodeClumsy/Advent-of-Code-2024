@@ -7,7 +7,7 @@ namespace AOC_2024
     {
         static void Main(string[] args)
         {
-            string solution = AocManager.Solve(2, 1);
+            string solution = AocManager.Solve(3, 2);
 
             Console.WriteLine(solution);
         }
