@@ -77,7 +77,7 @@ namespace AOC_2024.DataModels
             }
         }
 
-        public List<string> SplitNewline(int puzzleNumber, bool removeBlankLines = false)
+        public List<string> SplitNewline(int puzzleNumber, bool removeBlankLines = false, bool trimLines = false)
         {
             if (puzzleNumber < 1 || puzzleNumber > 2)
             {
@@ -89,6 +89,14 @@ namespace AOC_2024.DataModels
             if (removeBlankLines)
             {
                 outData = outData.Where(line => !string.IsNullOrEmpty(line)).ToList();
+            }
+
+            if (trimLines)
+            {
+                for (int i = 0; i < outData.Count; i++)
+                {
+                    outData[i] = outData[i].Trim();
+                }
             }
 
             return outData;
