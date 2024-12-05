@@ -9,11 +9,6 @@ namespace AOC_2024.Solutions
     {
         public string SolvePuzzleOne(Puzzle input)
         {
-            if (input?.PuzzleOneInput == null || string.IsNullOrWhiteSpace(input.PuzzleOneInput))
-            {
-                throw new ArgumentException("Puzzle input cannot be null or empty.", nameof(input));
-            }
-
             string word = "xmas";
             string reversedWord = new string(word.Reverse().ToArray());
 
@@ -55,7 +50,7 @@ namespace AOC_2024.Solutions
                 if (!string.IsNullOrEmpty(diagonalTRToBL)) diagonalTrToBl.Add(diagonalTRToBL.ToLower());
             }
 
-            int CountMatches(IEnumerable<string> lines) => lines.Sum(line => Regex.Matches(line, matchCondition, RegexOptions.IgnoreCase).Count);
+            int CountMatches(List<string> lines) => lines.Sum(line => Regex.Matches(line, matchCondition, RegexOptions.IgnoreCase).Count);
 
             int total = CountMatches(horizontal) + CountMatches(verticalStrings) + CountMatches(diagonalTlToBr) + CountMatches(diagonalTrToBl);
 
@@ -64,7 +59,48 @@ namespace AOC_2024.Solutions
 
         public string SolvePuzzleTwo(Puzzle input)
         {
-            throw new NotImplementedException();
+            // split input into a list of lowercase strings
+            List<string> grid = input.SplitNewline(2, true, true).Select(line => line.ToLower()).ToList();
+            string matchCondition = $"(?=mas|sam)";
+            int total = 0;
+
+            // loop through rows, ignoring the first and last
+            for (int row = 1; row < grid.Count - 1; row++)
+            {
+                string currentRow = grid[row];
+
+                // loop through columns, ignoring the first and last
+                for (int col = 1; col < currentRow.Length - 1; col++)
+                {
+                    char currentChar = currentRow[col];
+
+                    // only interested in 'a' as the center of the 'X'
+                    if (currentChar == 'a')
+                    {
+                        // get characters diagonally around 'a'
+                        char tl = grid[row + 1][col - 1]; // bottom-left
+                        char tr = grid[row + 1][col + 1]; // bottom-right
+                        char bl = grid[row - 1][col - 1]; // top-left
+                        char br = grid[row - 1][col + 1]; // top-right
+
+                        // form the two diagonals as strings
+                        string tlToBr = $"{tl}{currentChar}{br}";
+                        string trToBl = $"{tr}{currentChar}{bl}";
+
+                        // check if either diagonal matches 'mas' or 'sam'
+                        var tlToBrCount = Regex.Matches(tlToBr, matchCondition, RegexOptions.IgnoreCase);
+                        var trToBlCount = Regex.Matches(trToBl, matchCondition, RegexOptions.IgnoreCase);
+
+                        // increment total if both diagonals have valid matches
+                        if (tlToBrCount.Any() && trToBlCount.Any())
+                        {
+                            total++;
+                        }
+                    }
+                }
+            }
+
+            return total.ToString();
         }
     }
 }
